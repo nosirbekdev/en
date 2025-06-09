@@ -1,3 +1,4 @@
+import { useColorMode } from "@/components/ui/color-mode";
 import {
   Button,
   CloseButton,
@@ -11,6 +12,12 @@ import {
 import { IoSettingsOutline } from "react-icons/io5";
 
 const SettingsDrawer = () => {
+  const { colorMode } = useColorMode();
+
+  const isDark = colorMode === "dark";
+
+  const subTextColor = isDark ? "gray.300" : "gray.600";
+
   return (
     <HStack wrap="wrap">
       <For each={["sm"]}>
@@ -22,8 +29,8 @@ const SettingsDrawer = () => {
                 colorScheme="purple"
                 variant="ghost"
                 border={"1px solid "}
-                borderColor="gray.600"
-                size="md"
+                borderColor={subTextColor}
+                size={{ base: "sm", md: "md" }}
               >
                 <IoSettingsOutline />
               </IconButton>

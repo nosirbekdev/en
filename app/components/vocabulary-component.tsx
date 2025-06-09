@@ -105,14 +105,16 @@ const VocabularyComponent = () => {
               {vocabList.map((item, idx) => (
                 <Flex
                   key={idx}
+                  direction={{ base: "column", md: "row" }}
                   justify="space-between"
-                  align="center"
+                  align={{ base: "flex-start", md: "center" }}
                   px={4}
                   py={3}
                   borderRadius="md"
                   bg={vocabularyListBg}
                   backdropFilter="blur(20px)"
                   boxShadow="sm"
+                  gap={2} // mobilda text bilan button orasida biroz joy qoldiradi
                 >
                   <Text color={colorMode === "dark" ? "white" : "gray.800"}>
                     <strong>{item.en}</strong> - {item.uz}
