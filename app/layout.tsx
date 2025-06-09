@@ -1,5 +1,10 @@
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { ColorModeProvider } from "@/components/ui/color-mode";
+import { Provider } from "@/components/ui/provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Client, HydrationProvider } from "react-hydration-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,11 +28,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <HydrationProvider>
+          <ColorModeProvider>
+            <Provider>
+              <Header />
+              <main style={{ flex: 1, padding: "1rem 2rem" }}>
+                <Client>{children}</Client>
+              </main>
+              <Footer />
+            </Provider>
+          </ColorModeProvider>
+        </HydrationProvider>
       </body>
     </html>
   );
